@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+
 import Body from './components/Body/Body';
 
 function App() {

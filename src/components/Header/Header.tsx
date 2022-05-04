@@ -1,19 +1,13 @@
-import { AppBar, Box, Container, Toolbar, Typography, IconButton, Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material";
-import { useState } from "react";
+import { AppBar, Box, Container, Toolbar, Typography, Button, MenuItem } from "@mui/material";
 
 const pages = ['About', 'Github'];
 
 const Header = () => {
-    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         window.open('https://github.com/natanfrost/');
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
 
     return (
         <AppBar position="sticky" sx={{backgroundColor: '#5D737E'}}>
@@ -21,7 +15,7 @@ const Header = () => {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         {pages.map((page) => (
-                            <MenuItem key={page} onClick={handleCloseNavMenu}>
+                            <MenuItem key={page}>
                                 <Typography textAlign="center">{page}</Typography>
                             </MenuItem>
                         ))}
