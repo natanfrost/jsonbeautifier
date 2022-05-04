@@ -1,11 +1,10 @@
-
-import './App.css';
+import { Box } from '@mui/system';
+import Body from './components/Body/Body';
 
 function App() {
+
   return (
-    <div className="App">
-      <span>nothing to show...</span>
-    </div>
+    <Body />
   );
 }
 
