@@ -7,8 +7,8 @@ const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        window.open('https://github.com/natanfrost/');
     };
 
     const handleCloseNavMenu = () => {
@@ -30,7 +30,7 @@ const Header = () => {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                onClick={handleClick}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
