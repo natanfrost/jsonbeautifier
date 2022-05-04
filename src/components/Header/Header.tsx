@@ -1,6 +1,7 @@
-import { AppBar, Box, Container, Toolbar, Typography, Button, MenuItem } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AppBar, Box, Container, Toolbar, Button, Typography } from "@mui/material";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const pages = ['About', 'Github'];
 
 const Header = () => {
 
@@ -10,26 +11,17 @@ const Header = () => {
 
 
     return (
-        <AppBar position="sticky" sx={{backgroundColor: '#5D737E'}}>
-            <Container maxWidth="xl">
+        <AppBar position="sticky" sx={{ backgroundColor: '#2F6690' }}>
+            <Container fixed>
                 <Toolbar disableGutters>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        {pages.map((page) => (
-                            <MenuItem key={page}>
-                                <Typography textAlign="center">{page}</Typography>
-                            </MenuItem>
-                        ))}
+                    <Box style={{flex: 1}}>
+                        <img src="/img/logo.png" alt="" />
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleClick}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                    <Box >                        
+                        <Button key={'About'} onClick={handleClick} sx={{color: 'white'}}>
+                            About
+                        </Button>
+                        <Button startIcon={<FontAwesomeIcon icon={faGithub} />} key={'About'} onClick={handleClick} sx={{color: 'white'}} />
                     </Box>
                 </Toolbar>
             </Container>

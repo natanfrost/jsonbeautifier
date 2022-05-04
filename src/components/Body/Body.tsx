@@ -10,7 +10,6 @@ const Body = () => {
     const format = () => {
         const jsonObj = JSON.parse(json);
         setFormatedJson(JSON.stringify(jsonObj, null, '\t'));
-        console.log(JSON.stringify(json, null, '\t'));        
         resultRef.current!.scrollIntoView({ behavior: 'smooth' });
     }
 
