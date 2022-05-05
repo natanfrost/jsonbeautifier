@@ -13,42 +13,50 @@ const Body = () => {
 
     const addNewJson = () => {
         const jsonObj = JSON.parse(textField);
-        const formatted = JSON.stringify(jsonObj, null, '\t');             
-        setJson(prev => [...prev, formatted]);        
+        const formatted = JSON.stringify(jsonObj, null, '\t');
+        setJson(prev => [formatted, ...prev]);
+
+        setTimeout(() => {
+            const element = document.getElementById('json-result');
+            element?.scrollIntoView({behavior: 'smooth'});
+        }, 1);
     }
 
     return (
         <>
-            <Header />
-            <Container fixed>
-                <Paper elevation={3} sx={{ padding: '20px' }} square>
-                    <Typography variant="subtitle1" align="center" sx={{fontWeight: 'bold'}}>
-                        Paste your JSON below
-                    </Typography>
-                    <Grid container spacing={2} >
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={8}>
-                            <Typography variant="h1">
-                                <TextField fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" onChange={(e) => handleChange(e.target.value)} />
-                            </Typography>
+            <>
+                <Header />
+                <Container fixed>
+                    <Paper elevation={3} sx={{ padding: '20px' }} square>
+                        <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
+                            Paste your JSON below
+                        </Typography>
+                        <Grid container spacing={2} >
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={8}>
+                                <Typography variant="h1">
+                                    <TextField fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" onChange={(e) => handleChange(e.target.value)} />
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={2}></Grid>
                         </Grid>
-                        <Grid item xs={2}></Grid>
-                    </Grid>
-                    <Container fixed>
-                        <Grid container justifyContent={'center'} marginTop={2}>
-                            <Button variant="contained" onClick={() => addNewJson()}>Process</Button>
-                        </Grid>
-                    </Container>
-                </Paper>
-            </Container>
+                        <Container fixed>
+                            <Grid container justifyContent={'center'} marginTop={2}>
+                                <Button variant="contained" onClick={() => addNewJson()}>Process</Button>
+                            </Grid>
+                        </Container>
+                    </Paper>
+                    <div id="json-result"></div>
+                </Container>                
+            </>
             {
-                json.length > 0  ? 
-                json.map((el, index) => {
-                    return <JsonFormatted id={index.toString()} key={index} json={el} />
-                })
-                :
-            null
-            }            
+                json.length > 0 ?
+                    json.map((el, index) => {
+                        return <JsonFormatted id={index.toString()} key={index} json={el} />
+                    })
+                    :
+                    null
+            }
         </>
     )
 }
