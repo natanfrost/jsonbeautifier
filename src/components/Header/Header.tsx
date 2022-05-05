@@ -15,13 +15,10 @@ const Header = () => {
             <Container fixed>
                 <Toolbar disableGutters>
                     <Box style={{flex: 1}}>
-                        <img src="/img/logo.png" alt="" />
+                        <img src="/img/logo.png" alt="JSON Beautifier" style={{cursor: 'pointer'}} />
                     </Box>
-                    <Box >                        
-                        <Button key={'About'} onClick={handleClick} sx={{color: 'white'}}>
-                            About
-                        </Button>
-                        <Button startIcon={<FontAwesomeIcon icon={faGithub} />} key={'About'} onClick={handleClick} sx={{color: 'white'}} />
+                    <Box >
+                        <Button startIcon={<FontAwesomeIcon icon={faGithub} />} key={'GitHub'} onClick={handleClick} sx={{color: 'white'}} />
                     </Box>
                 </Toolbar>
             </Container>

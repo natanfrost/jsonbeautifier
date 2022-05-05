@@ -1,59 +1,54 @@
 import { Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Header from "../Header/Header";
+import JsonFormatted from "../JsonFormatted/JsonFormatted";
 
 const Body = () => {
-    const [json, setJson] = useState('');
-    const [formatedJson, setFormatedJson] = useState('');
-    const resultRef = useRef<HTMLElement>(null);
+    const [json, setJson] = useState<string[]>([]);
+    const [textField, setTextField] = useState('');
 
-    const format = () => {
-        const jsonObj = JSON.parse(json);
-        setFormatedJson(JSON.stringify(jsonObj, null, '\t'));
-        resultRef.current!.scrollIntoView({ behavior: 'smooth' });
+    const handleChange = (e: string) => {
+        setTextField(e);
+    }
+
+    const addNewJson = () => {
+        const jsonObj = JSON.parse(textField);
+        const formatted = JSON.stringify(jsonObj, null, '\t');             
+        setJson(prev => [...prev, formatted]);        
     }
 
     return (
         <>
             <Header />
             <Container fixed>
-                <Paper elevation={3} sx={{ height: '90vh', padding: '20px' }} square>
-                    <Typography variant="subtitle1" align="center">
+                <Paper elevation={3} sx={{ padding: '20px' }} square>
+                    <Typography variant="subtitle1" align="center" sx={{fontWeight: 'bold'}}>
                         Paste your JSON below
                     </Typography>
                     <Grid container spacing={2} >
                         <Grid item xs={2}></Grid>
                         <Grid item xs={8}>
                             <Typography variant="h1">
-                                <TextField fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" onChange={(e) => setJson(e.target.value)} />
+                                <TextField fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" onChange={(e) => handleChange(e.target.value)} />
                             </Typography>
                         </Grid>
                         <Grid item xs={2}></Grid>
                     </Grid>
                     <Container fixed>
-                        <Grid container justifyContent={'center'}>
-                            <Button variant="contained" onClick={() => format()}>Process</Button>
+                        <Grid container justifyContent={'center'} marginTop={2}>
+                            <Button variant="contained" onClick={() => addNewJson()}>Process</Button>
                         </Grid>
                     </Container>
                 </Paper>
             </Container>
-            <Container fixed id='result'>
-                <Paper elevation={0} sx={{ height: '80vh', padding: '20px' }} square>
-                    <Typography variant="subtitle1" align="center">
-                        Result
-                    </Typography>
-                    <Grid container spacing={2}>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={8}>
-                            <Typography variant="subtitle1">
-                                {/* {formatedJson} */}
-                                <TextField inputRef={resultRef} value={formatedJson} fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" />
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={2}></Grid>
-                    </Grid>
-                </Paper>
-            </Container>
+            {
+                json.length > 0  ? 
+                json.map((el, index) => {
+                    return <JsonFormatted id={index.toString()} key={index} json={el} />
+                })
+                :
+            null
+            }            
         </>
     )
 }
