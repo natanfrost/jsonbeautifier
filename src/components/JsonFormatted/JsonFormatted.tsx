@@ -1,5 +1,5 @@
 import { Container, Paper, Typography, Grid, TextField } from "@mui/material";
-import { createRef, useEffect, useRef } from "react";
+import { createRef } from "react";
 
 
 interface JsonFormattedProps {
