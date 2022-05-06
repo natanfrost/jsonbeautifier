@@ -1,7 +1,5 @@
 import { Container, Paper, Typography, Grid, TextField } from "@mui/material";
 import { createRef } from "react";
-
-
 interface JsonFormattedProps {
     id: string,
     json: string
@@ -9,13 +7,6 @@ interface JsonFormattedProps {
 
 const JsonFormatted = (props: JsonFormattedProps) => {
     const refElem = createRef<any>();
-
-    // useEffect(() => {   
-    //     setTimeout(() => {
-    //         const doc = document.getElementById(`${props.id}`)
-    //         refElem.current?.scrollIntoView({behavior: 'smooth'});                     
-    //     }, 1);        
-    // }, [refElem])
 
     return (
         <Container id={props.id} fixed>
