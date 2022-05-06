@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Alert, AlertTitle, Button, Container, Grid, Paper, Snackbar, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import Header from "../Header/Header";
 import JsonFormatted from "../JsonFormatted/JsonFormatted";
@@ -6,20 +6,31 @@ import JsonFormatted from "../JsonFormatted/JsonFormatted";
 const Body = () => {
     const [json, setJson] = useState<string[]>([]);
     const [textField, setTextField] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleChange = (e: string) => {
         setTextField(e);
     }
 
     const addNewJson = () => {
-        const jsonObj = JSON.parse(textField);
-        const formatted = JSON.stringify(jsonObj, null, '\t');
-        setJson(prev => [formatted, ...prev]);
 
-        setTimeout(() => {
-            const element = document.getElementById('json-result');
-            element?.scrollIntoView({behavior: 'smooth'});
-        }, 1);
+        try {
+            const jsonObj = JSON.parse(textField);
+            const formatted = JSON.stringify(jsonObj, null, '\t');
+            setJson(prev => [formatted, ...prev]);
+
+            setTimeout(() => {
+                const element = document.getElementById('json-result');
+                element?.scrollIntoView({ behavior: 'smooth' });
+            }, 1);
+        } catch (error) {
+            if (error instanceof Error) {
+                setShowAlert(true);
+                setAlertMessage(error.message);
+            }            
+        }
+
     }
 
     return (
@@ -47,7 +58,7 @@ const Body = () => {
                         </Container>
                     </Paper>
                     <div id="json-result"></div>
-                </Container>                
+                </Container>
             </>
             {
                 json.length > 0 ?
@@ -57,6 +68,13 @@ const Body = () => {
                     :
                     null
             }
+            <Snackbar open={showAlert} autoHideDuration={6000} anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
+                <Alert severity="error" onClose={() => setShowAlert(false)}>
+                    <AlertTitle>Error</AlertTitle>
+                    {alertMessage}
+                </Alert>
+            </Snackbar>
+
         </>
     )
 }
