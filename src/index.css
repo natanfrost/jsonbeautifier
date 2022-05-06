@@ -2,9 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto';
+  font-family: 'Roboto';  
 }
 
 body {
   background-color: #131200;
+}
+
+span {
+  white-space: pre;
 }

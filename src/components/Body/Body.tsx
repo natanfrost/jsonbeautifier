@@ -6,12 +6,15 @@ import JsonFormatted from "../JsonFormatted/JsonFormatted";
 const Body = () => {
     const [json, setJson] = useState<string[]>([]);
     const [textField, setTextField] = useState('');
+
+
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 
     const handleChange = (e: string) => {
         setTextField(e);
     }
+
 
     const addNewJson = () => {
 
@@ -23,14 +26,13 @@ const Body = () => {
             setTimeout(() => {
                 const element = document.getElementById('json-result');
                 element?.scrollIntoView({ behavior: 'smooth' });
-            }, 1);
+            }, 100);
         } catch (error) {
             if (error instanceof Error) {
                 setShowAlert(true);
                 setAlertMessage(error.message);
             }            
         }
-
     }
 
     return (
@@ -65,14 +67,14 @@ const Body = () => {
                                 <Button variant="contained" onClick={() => addNewJson()}>Process</Button>
                             </Grid>
                         </Container>
-                    </Paper>
-                    <div id="json-result"></div>
+                        <div id="json-result"></div>
+                    </Paper>                    
                 </Container>
             </>
             {
                 json.length > 0 ?
                     json.map((el, index) => {
-                        return <JsonFormatted id={index.toString()} key={index} json={el} />
+                         return <JsonFormatted id={index.toString()} key={index} json={el} />
                     })
                     :
                     null
