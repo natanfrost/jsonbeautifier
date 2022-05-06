@@ -12,7 +12,7 @@ const JsonFormatted = (props: JsonFormattedProps) => {
     return (
         <Container id={props.id} fixed>
             <div ref={refElem}></div>
-            <Paper elevation={0} sx={{ padding: '20px' }} square>
+            <Paper elevation={0} sx={{ padding: '20px', backgroundColor: '#F0EFF4' }} square>
                 <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
                     Beautified JSON 
                 </Typography>
@@ -20,7 +20,7 @@ const JsonFormatted = (props: JsonFormattedProps) => {
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8}>
                         <Typography variant="subtitle1">
-                            <TextField value={props.json} fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense"/>
+                            <TextField value={props.json} fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" sx={{backgroundColor: 'white'}}/>
                         </Typography>
                     </Grid>
                     <Grid item xs={2}></Grid>

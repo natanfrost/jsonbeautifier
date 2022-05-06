@@ -37,16 +37,25 @@ const Body = () => {
         <>
             <>
                 <Header />
-                <Container fixed>
-                    <Paper elevation={3} sx={{ padding: '20px' }} square>
+                <Container fixed >
+                    <Paper elevation={3} sx={{ padding: '20px', backgroundColor: '#F0EFF4' }} square >
                         <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
                             Paste your JSON below
                         </Typography>
                         <Grid container spacing={2} >
                             <Grid item xs={2}></Grid>
                             <Grid item xs={8}>
-                                <Typography variant="h1">
-                                    <TextField fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" onChange={(e) => handleChange(e.target.value)} />
+                                <Typography variant="h1" sx={{borderRadius: '5px'}}>
+                                    <TextField 
+                                        fullWidth 
+                                        variant="outlined" 
+                                        multiline 
+                                        minRows={20} 
+                                        placeholder="{}" 
+                                        margin="dense" 
+                                        onChange={(e) => handleChange(e.target.value)} 
+                                        sx={ {backgroundColor: 'white'}}
+                                    />                                        
                                 </Typography>
                             </Grid>
                             <Grid item xs={2}></Grid>
