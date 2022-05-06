@@ -1,5 +1,6 @@
 import { Container, Paper, Typography, Grid, TextField } from "@mui/material";
 import { createRef } from "react";
+
 interface JsonFormattedProps {
     id: string,
     json: string
@@ -12,8 +13,8 @@ const JsonFormatted = (props: JsonFormattedProps) => {
         <Container id={props.id} fixed>
             <div ref={refElem}></div>
             <Paper elevation={0} sx={{ padding: '20px' }} square>
-                <Typography variant="subtitle1" align="center">
-                    Result
+                <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
+                    JSON Beautified 
                 </Typography>
                 <Grid container spacing={2}>
                     <Grid item xs={2}></Grid>
