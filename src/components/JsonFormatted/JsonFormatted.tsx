@@ -13,7 +13,7 @@ const JsonFormatted = (props: JsonFormattedProps) => {
         <Container id={props.id} fixed>
             <div ref={refElem}></div>
             <Paper elevation={0} sx={{ padding: '20px', backgroundColor: '#F0EFF4' }} square>
-                <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
+                <Typography fontFamily={'monospace'} variant="h6" align="center">
                     Beautified JSON 
                 </Typography>
                 <Grid container spacing={2}>

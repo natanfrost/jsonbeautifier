@@ -39,7 +39,7 @@ const Body = () => {
                 <Header />
                 <Container fixed >
                     <Paper elevation={3} sx={{ padding: '20px', backgroundColor: '#F0EFF4' }} square >
-                        <Typography variant="subtitle1" align="center" sx={{ fontWeight: 'bold' }}>
+                        <Typography fontFamily={'monospace'} variant="h6" align="center">
                             Paste your JSON below
                         </Typography>
                         <Grid container spacing={2} >
