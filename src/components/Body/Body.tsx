@@ -45,10 +45,11 @@ const Body = () => {
                             Paste your JSON below
                         </Typography>
                         <Grid container spacing={2} >
-                            <Grid item xs={2}></Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={1}></Grid>
+                            <Grid item xs={10}>
                                 <Typography variant="h1" sx={{borderRadius: '5px'}}>
                                     <TextField 
+                                        role={'input-json'}
                                         fullWidth 
                                         variant="outlined" 
                                         multiline 
@@ -64,7 +65,7 @@ const Body = () => {
                         </Grid>
                         <Container fixed>
                             <Grid container justifyContent={'center'} marginTop={2}>
-                                <Button variant="contained" onClick={() => addNewJson()}>Process</Button>
+                                <Button variant="contained" onClick={() => addNewJson()} role='add-new'>Process</Button>
                             </Grid>
                         </Container>
                         <div id="json-result"></div>
@@ -74,7 +75,7 @@ const Body = () => {
             {
                 json.length > 0 ?
                     json.map((el, index) => {
-                         return <JsonFormatted id={index.toString()} key={index} json={el} />
+                         return <JsonFormatted id={index.toString()} key={index} json={el}/>
                     })
                     :
                     null

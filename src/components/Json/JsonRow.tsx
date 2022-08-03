@@ -22,17 +22,19 @@ const JsonRow = (props: Props) => {
 
     return(
         <>
-            <Typography variant="subtitle1" component={'span'} sx={{fontWeight: 'bold'}}>
+            <Typography variant="subtitle1" component={'span'} sx={{fontWeight: 'bold'}} aria-label="key" role="span">
                 {left}
             </Typography>
-            <Typography variant="subtitle1" component={'span'}>
-                {
-                    left !== '' ?
-                    ':' :
-                    null
-                }
-                {right}
-            </Typography>
+            {
+                left !== '' ?
+                    <Typography variant="subtitle1" component={'span'} align="left" role="span" aria-label="value"> 
+                        : {right}
+                    </Typography>
+                :
+                <Typography variant="subtitle1" component={'span'} role="span" aria-label="value"> 
+                    {right}
+                </Typography>
+            }
         </>
     )
 }

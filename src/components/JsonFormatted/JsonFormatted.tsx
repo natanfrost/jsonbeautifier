@@ -26,21 +26,17 @@ const JsonFormatted = (props: JsonFormattedProps) => {
                     Beautified JSON
                 </Typography>
                 <Grid container spacing={2}>
-                    <Grid item xs={2}></Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
                         <Paper elevation={3} sx={{ padding: '1em' }}>
                             {
                                 splitedJson.map((el) => {
-                                    return <Paper square elevation={0}>
+                                    return <Paper style={{overflowWrap: 'break-word'}} elevation={0}>
                                         <JsonRow json={el} />
                                     </Paper>
                                 })
                             }
                         </Paper>
-                        {/* <Typography variant="subtitle1">
-                            <TextField value={props.json} fullWidth variant="outlined" multiline minRows={20} placeholder="{}" margin="dense" sx={{backgroundColor: 'white'}}/>
-                        </Typography> */}
-
                     </Grid>
                     <Grid item xs={2}></Grid>
                 </Grid>
