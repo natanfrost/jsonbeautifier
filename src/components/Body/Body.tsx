@@ -80,7 +80,14 @@ const Body = () => {
                     :
                     null
             }
-            <Snackbar open={showAlert} autoHideDuration={6000} anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
+            <Snackbar 
+                open={showAlert} 
+                autoHideDuration={5000} 
+                anchorOrigin={{vertical: 
+                'bottom', 
+                horizontal: 'right'}}
+                onClose={() => setShowAlert(false)}
+            >
                 <Alert severity="error" onClose={() => setShowAlert(false)}>
                     <AlertTitle>Error</AlertTitle>
                     {alertMessage}
