@@ -22,7 +22,7 @@ const JsonFormatted = (props: JsonFormattedProps) => {
         <Container id={props.id} fixed>
             <div ref={refElem}></div>
             <Paper elevation={0} sx={{ padding: '20px', backgroundColor: '#F0EFF4' }} square>
-                <Typography fontFamily={'monospace'} variant="h6" align="center" sx={{paddingTop: '20px', paddingBottom: '20px'}}>
+                <Typography role={'header-text'} fontFamily={'monospace'} variant="h6" align="center" sx={{paddingTop: '20px', paddingBottom: '20px'}}>
                     Beautified JSON
                 </Typography>
                 <Grid container spacing={2}>
@@ -30,8 +30,8 @@ const JsonFormatted = (props: JsonFormattedProps) => {
                     <Grid item xs={10}>
                         <Paper elevation={3} sx={{ padding: '1em' }}>
                             {
-                                splitedJson.map((el) => {
-                                    return <Paper style={{overflowWrap: 'break-word'}} elevation={0}>
+                                splitedJson.map((el, index) => {
+                                    return <Paper style={{overflowWrap: 'break-word'}} elevation={0} key={index}>
                                         <JsonRow json={el} />
                                     </Paper>
                                 })

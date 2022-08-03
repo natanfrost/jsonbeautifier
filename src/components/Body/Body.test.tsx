@@ -1,32 +1,27 @@
-import { render, screen, fireEvent,  } from '@testing-library/react';
-import { shallow, mount } from 'enzyme';
-import JsonFormatted from '../JsonFormatted/JsonFormatted';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import Body from './Body';
 
-describe('<JsonRow />', () => {
-    it('should render', async() => {
+describe('<Body />', () => {
+    it('should render all elements', () => {
       render(<Body/>);    
+      const header = screen.getByText('Paste your JSON below')
+      expect(header).toBeInTheDocument();
+
+      const button = screen.getByRole('add-new');
+      expect(button).toBeInTheDocument();
     })
 
-    it('should generate json object when button clicked', async () => {
-        jest.useFakeTimers();
-        const { rerender } = render(<Body/>);    
+    it('should show snackbar on error', () => {
+      render(<Body/>); 
+      const input = screen.getByRole('input-json');
+      input.innerText = "abcd";
 
-        const json = '{"name":"John", "age":30, "car":null}';
-        let textBox = screen.getByRole('input-json');
+      const button = screen.getByRole('add-new');
+      fireEvent.click(button);
 
-        textBox.textContent = json;
-        fireEvent.change(screen.getByRole('input-json'));
-
-
-        fireEvent.click(screen.getByRole('add-new'));            
-        
-        
-        const el = screen.getByTestId('json-formatted');
-        
-        
-            
-                
+      const snackbar = screen.getByRole('toast');
+      expect(snackbar).toBeVisible();
     })
+
 })

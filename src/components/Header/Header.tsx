@@ -13,6 +13,7 @@ const Header = () => {
                     </Box>
                     <Box>
                         <Button 
+                            role='github-link'
                             href="https://github.com/natanfrost/"
                             target='_blank'
                             startIcon={<FontAwesomeIcon icon={faGithub} />} 

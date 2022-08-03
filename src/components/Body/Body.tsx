@@ -15,7 +15,6 @@ const Body = () => {
         setTextField(e);
     }
 
-
     const addNewJson = () => {
 
         try {
@@ -81,6 +80,7 @@ const Body = () => {
                     null
             }
             <Snackbar 
+                role={'toast'}
                 open={showAlert} 
                 autoHideDuration={5000} 
                 anchorOrigin={{vertical: 
