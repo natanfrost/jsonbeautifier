@@ -12,6 +12,7 @@ const JsonFormatted = (props: JsonFormattedProps) => {
     const [splitedJson, setSplitedJson] = useState<string[]>([]);
 
     useEffect(() => {
+        console.log('a');
         const { json } = { ...props };
 
         const split = json.split('\n');
