@@ -1,11 +1,7 @@
-
-import Body from './components/Body/Body';
+import Body from "./components/Body/Body";
 
 function App() {
-
-  return (
-    <Body />
-  );
+  return <Body />;
 }
 
 export default App;

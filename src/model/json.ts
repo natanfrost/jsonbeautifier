@@ -1,3 +1,1 @@
-export interface Json {
-
-}
+export interface Json {}
