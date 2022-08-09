@@ -80,6 +80,7 @@ const Body = () => {
                   variant="contained"
                   onClick={() => addNewJson()}
                   role="add-new"
+                  size="large"
                 >
                   Process
                 </Button>
