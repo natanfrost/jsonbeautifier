@@ -15,6 +15,7 @@ import Header from "../Header/Header";
 import JsonFormatted from "../JsonFormatted/JsonFormatted";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 const Body = () => {
   const [json, setJson] = useState<string[]>([]);
@@ -47,18 +48,27 @@ const Body = () => {
     }
   };
 
+  const clearText = () => {
+    setTextField("");
+    if (inputFile) {
+      inputFile.current!.value = "";
+    }
+  };
+
   const openFile = () => {
     inputFile!.current!.click();
   };
 
   const readFile = () => {
-    console.log(inputFile.current?.files);
+    console.log(inputFile);
+
     const reader = new FileReader();
     if (inputFile.current !== null) {
       if (inputFile.current.files !== null) {
         reader.readAsText(inputFile.current.files[0], "UTF-8");
         reader.onload = (evt: ProgressEvent<FileReader>) => {
           if (evt.target) {
+            console.log(evt.target.result!.toString());
             setTextField(evt.target.result!.toString());
           }
         };
@@ -88,6 +98,18 @@ const Body = () => {
               <Grid item xs={10}>
                 <Stack direction={"row"} justifyContent={"flex-end"}>
                   <FontAwesomeIcon
+                    onClick={clearText}
+                    style={{
+                      color: "#131200",
+                      cursor: "pointer",
+                      position: "absolute",
+                      zIndex: "1",
+                      paddingTop: "15px",
+                      paddingRight: "40px",
+                    }}
+                    icon={faTrashCan}
+                  />
+                  <FontAwesomeIcon
                     onClick={openFile}
                     style={{
                       color: "#131200",
@@ -112,7 +134,7 @@ const Body = () => {
                     fullWidth
                     variant="outlined"
                     multiline
-                    minRows={20}
+                    rows={20}
                     placeholder="{}"
                     margin="dense"
                     onChange={(e) => handleChange(e.target.value)}
