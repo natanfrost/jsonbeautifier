@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AppBar, Box, Container, Toolbar, Button } from "@mui/material";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { AppBar, Box, Container, Toolbar, Button } from "@mui/material";
 
 const Header = () => {
   return (

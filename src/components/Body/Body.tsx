@@ -6,12 +6,15 @@ import {
   Grid,
   Paper,
   Snackbar,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "../Header/Header";
 import JsonFormatted from "../JsonFormatted/JsonFormatted";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 const Body = () => {
   const [json, setJson] = useState<string[]>([]);
@@ -19,6 +22,8 @@ const Body = () => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  const inputFile = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: string) => {
     setTextField(e);
@@ -42,6 +47,29 @@ const Body = () => {
     }
   };
 
+  const openFile = () => {
+    inputFile!.current!.click();
+  };
+
+  const readFile = () => {
+    console.log(inputFile.current?.files);
+    const reader = new FileReader();
+    if (inputFile.current !== null) {
+      if (inputFile.current.files !== null) {
+        reader.readAsText(inputFile.current.files[0], "UTF-8");
+        reader.onload = (evt: ProgressEvent<FileReader>) => {
+          if (evt.target) {
+            setTextField(evt.target.result!.toString());
+          }
+        };
+        reader.onerror = (evt: ProgressEvent<FileReader>) => {
+          setShowAlert(true);
+          setAlertMessage(evt.target!.error!.message);
+        };
+      }
+    }
+  };
+
   return (
     <>
       <>
@@ -58,7 +86,27 @@ const Body = () => {
             <Grid container spacing={2}>
               <Grid item xs={1}></Grid>
               <Grid item xs={10}>
-                <Typography variant="h1" sx={{ borderRadius: "5px" }}>
+                <Stack direction={"row"} justifyContent={"flex-end"}>
+                  <FontAwesomeIcon
+                    onClick={openFile}
+                    style={{
+                      color: "#131200",
+                      cursor: "pointer",
+                      position: "absolute",
+                      zIndex: "1",
+                      paddingTop: "15px",
+                      paddingRight: "10px",
+                    }}
+                    icon={faFolderOpen}
+                  />
+                  <input
+                    ref={inputFile}
+                    onChange={readFile}
+                    type="file"
+                    hidden
+                  />
+                </Stack>
+                <Typography component={"span"} sx={{ borderRadius: "5px" }}>
                   <TextField
                     role={"input-json"}
                     fullWidth
@@ -69,6 +117,7 @@ const Body = () => {
                     margin="dense"
                     onChange={(e) => handleChange(e.target.value)}
                     sx={{ backgroundColor: "white" }}
+                    value={textField}
                   />
                 </Typography>
               </Grid>
@@ -100,7 +149,7 @@ const Body = () => {
       <Snackbar
         role={"toast"}
         open={showAlert}
-        autoHideDuration={5000}
+        autoHideDuration={6000}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         onClose={() => setShowAlert(false)}
       >
